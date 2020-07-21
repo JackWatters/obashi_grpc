@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import chat_pb2 as chat__pb2
+import doWork_pb2 as doWork__pb2
 
 
-class ChatServiceStub(object):
+class SimulateServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,42 +14,42 @@ class ChatServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayHello = channel.unary_unary(
-                '/chat.ChatService/SayHello',
-                request_serializer=chat__pb2.Message.SerializeToString,
-                response_deserializer=chat__pb2.Message.FromString,
+        self.DoWork = channel.unary_unary(
+                '/doWork.SimulateService/DoWork',
+                request_serializer=doWork__pb2.Message.SerializeToString,
+                response_deserializer=doWork__pb2.Message.FromString,
                 )
 
 
-class ChatServiceServicer(object):
+class SimulateServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SayHello(self, request, context):
+    def DoWork(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_ChatServiceServicer_to_server(servicer, server):
+def add_SimulateServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SayHello': grpc.unary_unary_rpc_method_handler(
-                    servicer.SayHello,
-                    request_deserializer=chat__pb2.Message.FromString,
-                    response_serializer=chat__pb2.Message.SerializeToString,
+            'DoWork': grpc.unary_unary_rpc_method_handler(
+                    servicer.DoWork,
+                    request_deserializer=doWork__pb2.Message.FromString,
+                    response_serializer=doWork__pb2.Message.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'chat.ChatService', rpc_method_handlers)
+            'doWork.SimulateService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class ChatService(object):
+class SimulateService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SayHello(request,
+    def DoWork(request,
             target,
             options=(),
             channel_credentials=None,
@@ -58,8 +58,8 @@ class ChatService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/chat.ChatService/SayHello',
-            chat__pb2.Message.SerializeToString,
-            chat__pb2.Message.FromString,
+        return grpc.experimental.unary_unary(request, target, '/doWork.SimulateService/DoWork',
+            doWork__pb2.Message.SerializeToString,
+            doWork__pb2.Message.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

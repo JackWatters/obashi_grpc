@@ -5,7 +5,7 @@ import (
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"goChat/chat"
+	"goChat/doWork"
 )
 
 func main() {
@@ -17,13 +17,13 @@ func main() {
 	}
 	defer conn.Close()
 
-	c := chat.NewChatServiceClient(conn)
+	c := doWork.NewSimulateServiceClient(conn)
 
-	message := chat.Message{
+	message := doWork.Message{
 		Body: "Hello from the client",
 	}
 
-	response, err := c.SayHello(context.Background(),&message)
+	response, err := c.DoWork(context.Background(),&message)
 
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s",err)

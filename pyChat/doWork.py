@@ -1,12 +1,12 @@
-import chat_pb2_grpc
-import chat_pb2
+import doWork_pb2_grpc
+import doWork_pb2
 
 from theatre_ag import Cast, Episode, SynchronizingClock, TaskQueueActor, default_cost
 import handwash_workflow as h 
 
-class Server(chat_pb2_grpc.ChatServiceServicer):
+class Server(doWork_pb2_grpc.SimulateServiceServicer):
 
-    def SayHello(self, request, context):
+    def DoWork(self, request, context):
         clock = SynchronizingClock(max_ticks=10)
 
         cast = Cast()
@@ -18,4 +18,4 @@ class Server(chat_pb2_grpc.ChatServiceServicer):
         episode.perform()
 
         print("Received message from the client: "+str(request.body))
-        return chat_pb2.Message(body="Hands clean = " + str(direction.hands.clean))
+        return doWork_pb2.Message(body="Hands clean = " + str(direction.hands.clean))
