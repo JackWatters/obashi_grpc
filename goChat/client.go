@@ -26,7 +26,7 @@ func main() {
 	response, err := c.DoWork(context.Background(),&message)
 
 	if err != nil {
-		log.Fatalf("Error when calling SayHello: %s",err)
+		log.Fatalf("Error when calling DoWork: %s",err)
 	}
 
 	log.Printf("Response from the server: %s",response.Body)

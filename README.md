@@ -28,8 +28,8 @@ In the goChat directory: <br/>
 
 ## Instructions
 
-To run this properly, start up one server file (either server.go or server.py) by typing in "go run server.go" or "python server.py" into a terminal at the root directory of the package. <br/>
-Then, run a client file (either client.go or client.py) in a separate terminal by typing in "go run client.go" or "python client.py" in the root directory of the package. <br/>
+To run this properly, start up one server file (either server.go or server.py) by typing in "go run server.go" or "python server.py" into a terminal at the appropriate package <br/>
+Then, run a client file (either client.go or client.py) in a separate terminal by typing in "go run client.go" or "python client.py" in the appropriate package. <br/>
 This will display a message saying "Wash your hands!", and in the original terminal, a message will be displayed to tell the client if the hands have been washed at the end of the workflow. <br/> <br/>
 Note: The server file must be shut down, or else it will continue to run. Do this by performing cmd-c in the terminal which it is open in.
 
