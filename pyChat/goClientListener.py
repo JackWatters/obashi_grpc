@@ -4,15 +4,19 @@ import time
 
 class goClientListener(object):
 
+    def __init__(self):
+        self.blocked = True
+
     def the_main_entry_point(self):
         while True:
             self.wait_for_message()
 
-    @default_cost(0)
+    @default_cost(1)
     def wait_for_message(self):
         try:
-            new CallOptions().WithWaitForReady(true))
+            while self.blocked:
+                pass
+            self.blocked = True
             print("idling")
-            time.sleep(1)
         except:
             return False

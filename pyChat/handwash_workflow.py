@@ -17,6 +17,7 @@ class RinseWorkflow(object):
 
     @default_cost(1)
     def rinse(self):
+        print("started rinsing hands")
         self.washable.soaped = False
 
 
@@ -30,16 +31,18 @@ class WashWorkflow(object):
 
     @default_cost(1)
     def add_soap(self):
+        print("started soaping hands")
         self.washable.soaped = True
 
     @default_cost(1)
     def scrub(self):
+        print("started scrubbing hands")
         if self.washable.soaped:
             self.washable.clean = True
 
     @default_cost(1)
     def wash(self):
-        print("hello")
+        print("started washing hands")
         self.add_soap()
         self.scrub()
         self.rinse.rinse()
@@ -51,8 +54,9 @@ class WashHandsDirection(object):
         self.hands = Hands()
 
     def apply(self, cast):
-        listener = g.goClientListener()
+        self.listener = g.goClientListener()
         wash_workflow = WashWorkflow(self.hands)
-        list(cast)[0].allocate_task(listener.the_main_entry_point)
+        list(cast)[0].allocate_task(self.listener.the_main_entry_point)
         list(cast)[1].allocate_task(wash_workflow.wash)
+        print("completed directions")
         
