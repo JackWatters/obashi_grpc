@@ -2,7 +2,7 @@ from theatre_ag import default_cost
 import grpc
 import time
 
-class goClientListener(object):
+class GoClientListener(object):
 
     def __init__(self):
         self.blocked = True
@@ -17,6 +17,5 @@ class goClientListener(object):
             while self.blocked:
                 pass
             self.blocked = True
-            print("idling")
         except:
             return False

@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import doWork_pb2 as doWork__pb2
+import do_work_pb2 as do__work__pb2
 
 
 class SimulateServiceStub(object):
@@ -14,17 +14,17 @@ class SimulateServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.DoWork = channel.unary_unary(
-                '/doWork.SimulateService/DoWork',
-                request_serializer=doWork__pb2.Message.SerializeToString,
-                response_deserializer=doWork__pb2.Message.FromString,
+        self.do_work = channel.unary_unary(
+                '/doWork.SimulateService/do_work',
+                request_serializer=do__work__pb2.Message.SerializeToString,
+                response_deserializer=do__work__pb2.Message.FromString,
                 )
 
 
 class SimulateServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def DoWork(self, request, context):
+    def do_work(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,10 +33,10 @@ class SimulateServiceServicer(object):
 
 def add_SimulateServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'DoWork': grpc.unary_unary_rpc_method_handler(
-                    servicer.DoWork,
-                    request_deserializer=doWork__pb2.Message.FromString,
-                    response_serializer=doWork__pb2.Message.SerializeToString,
+            'do_work': grpc.unary_unary_rpc_method_handler(
+                    servicer.do_work,
+                    request_deserializer=do__work__pb2.Message.FromString,
+                    response_serializer=do__work__pb2.Message.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -49,7 +49,7 @@ class SimulateService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def DoWork(request,
+    def do_work(request,
             target,
             options=(),
             channel_credentials=None,
@@ -58,8 +58,8 @@ class SimulateService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/doWork.SimulateService/DoWork',
-            doWork__pb2.Message.SerializeToString,
-            doWork__pb2.Message.FromString,
+        return grpc.experimental.unary_unary(request, target, '/doWork.SimulateService/do_work',
+            do__work__pb2.Message.SerializeToString,
+            do__work__pb2.Message.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

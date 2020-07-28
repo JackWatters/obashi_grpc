@@ -1,0 +1,11 @@
+syntax = "proto3";
+package doWork;
+
+message Message {
+    string body = 1;
+}
+
+service SimulateService {
+    rpc do_work(Message) returns (Message) {}
+}
+
