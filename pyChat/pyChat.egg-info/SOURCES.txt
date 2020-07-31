@@ -1,6 +1,0 @@
-setup.py
-pyChat.egg-info/PKG-INFO
-pyChat.egg-info/SOURCES.txt
-pyChat.egg-info/dependency_links.txt
-pyChat.egg-info/requires.txt
-pyChat.egg-info/top_level.txt

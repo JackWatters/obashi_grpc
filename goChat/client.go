@@ -28,6 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error when calling DoWork: %s",err)
 	}
-
+	
 	log.Printf("Response from the server: %s",response.Body)
+
 }

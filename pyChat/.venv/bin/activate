@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/jackwatters/go/src/gRPC_example/pyChat/.venv"
+VIRTUAL_ENV="/Users/jackwatters/go/src/obashi_grpc/pyChat/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

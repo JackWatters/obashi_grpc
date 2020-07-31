@@ -1,6 +1,0 @@
-setup.py
-JackWatters_pyChat.egg-info/PKG-INFO
-JackWatters_pyChat.egg-info/SOURCES.txt
-JackWatters_pyChat.egg-info/dependency_links.txt
-JackWatters_pyChat.egg-info/requires.txt
-JackWatters_pyChat.egg-info/top_level.txt

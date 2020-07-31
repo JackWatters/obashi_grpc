@@ -1,4 +1,4 @@
-##gRPC example 
+## gRPC example 
 
 A client/server gRPC communication application which allows the simulation of workflows on the server using the theatre_ag package. The server sets up and begins the workflow. The client regulates how much work is to be completed.
 

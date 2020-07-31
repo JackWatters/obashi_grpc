@@ -24,6 +24,7 @@ class Service(do_work_pb2_grpc.SimulateServiceServicer):
 
     def do_work(self, request, context):
         ##this is the blocking mechanism. Each time a message is sent, the simulation is freed for one tick.
+        print("hello")
         self.direction.listener.blocked = False 
         return do_work_pb2.Message(body="Hands clean = " + str(self.direction.hands.clean))
 

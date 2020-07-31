@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/jackwatters/go/src/gRPC_example/pyChat/.venv"
+set -gx VIRTUAL_ENV "/Users/jackwatters/go/src/obashi_grpc/pyChat/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
