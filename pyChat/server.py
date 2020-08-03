@@ -3,8 +3,26 @@ import do_work_pb2
 import do_work_pb2_grpc
 import do_work 
 from concurrent import futures
+from theatre_ag import Cast, Episode, SynchronizingClock, TaskQueueActor, default_cost
+from wait_for_tick_workflow import WaitForTickWorkflow
+from improv import Improv
 
-service = do_work.Service()
+def setup_improv():
+    clock = SynchronizingClock(max_ticks=10)
+
+    cast = Cast()
+    tick_listener = TaskQueueActor('tick_listener',clock)
+    cast.add_member(tick_listener)
+
+    improv = Improv(clock, cast)
+    wait_for_tick_workflow = WaitForTickWorkflow(improv)
+    tick_listener.allocate_task(wait_for_tick_workflow.the_main_entry_point)
+    improv.perform()
+
+    return improv
+
+improv = setup_improv()
+service = do_work.Service(improv)
 grpc_server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 do_work_pb2_grpc.add_SimulateServiceServicer_to_server(service, grpc_server)
 grpc_server.add_insecure_port('[::]:9000')

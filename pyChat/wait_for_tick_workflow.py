@@ -2,10 +2,10 @@ from theatre_ag import default_cost
 import grpc
 import time
 
-class GoClientListener(object):
+class WaitForTickWorkflow(object):
 
-    def __init__(self):
-        self.blocked = True
+    def __init__(self,improv):
+        self.improv = improv
 
     def the_main_entry_point(self):
         while True:
@@ -14,8 +14,8 @@ class GoClientListener(object):
     @default_cost(1)
     def wait_for_message(self):
         try:
-            while self.blocked:
+            while self.improv.blocked:
                 pass
-            self.blocked = True
+            self.improv.blocked = True
         except:
             return False

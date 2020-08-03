@@ -1,5 +1,5 @@
 from theatre_ag import Episode, TaskQueueActor, default_cost
-import go_client_listener as g
+import wait_for_tick_workflow as w
 
 
 class Hands(object):
@@ -54,7 +54,7 @@ class Direction(object):
         self.hands = Hands()
 
     def apply(self, cast):
-        self.listener = g.GoClientListener()
+        self.listener = w.WaitForTickWorkflow()
         wash_workflow = WashWorkflow(self.hands)
         list(cast)[0].allocate_task(self.listener.the_main_entry_point)
         list(cast)[1].allocate_task(wash_workflow.wash)

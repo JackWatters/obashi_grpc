@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-
+	"io/ioutil"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"goChat/doWork"
@@ -19,16 +19,23 @@ func main() {
 
 	c := doWork.NewSimulateServiceClient(conn)
 
+	data, err := ioutil.ReadFile("command.txt")
+    if err != nil {
+		log.Fatalf("Error when reading comand file: %s",err)
+    }
+
 	message := doWork.Message{
-		Body: "Hello from the client",
+		Body: string(data),
 	}
 
-	response, err := c.DoWork(context.Background(),&message)
+	for i:=0;i<1;i++ {
+		response, err := c.DoWork(context.Background(),&message)
 
-	if err != nil {
-		log.Fatalf("Error when calling DoWork: %s",err)
+		if err != nil {
+			log.Fatalf("Error when calling DoWork: %s",err)
+		}
+		
+		log.Printf("Response from the server: %s",response.Body)
 	}
-	
-	log.Printf("Response from the server: %s",response.Body)
 
 }
