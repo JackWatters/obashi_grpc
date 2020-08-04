@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"io/ioutil"
+	"strings"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"goChat/doWork"
@@ -19,16 +20,19 @@ func main() {
 
 	c := doWork.NewSimulateServiceClient(conn)
 
-	data, err := ioutil.ReadFile("command.txt")
+	file, err := ioutil.ReadFile("command.txt")
     if err != nil {
 		log.Fatalf("Error when reading comand file: %s",err)
-    }
-
-	message := doWork.Message{
-		Body: string(data),
 	}
+	
+	data := strings.Split(string(file),"\n")
 
-	for i:=0;i<1;i++ {
+	for line := range data {
+		
+		message := doWork.Message{
+			Body: string(data[line]),
+		}
+
 		response, err := c.DoWork(context.Background(),&message)
 
 		if err != nil {
@@ -36,6 +40,7 @@ func main() {
 		}
 		
 		log.Printf("Response from the server: %s",response.Body)
+
 	}
 
 }

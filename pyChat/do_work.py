@@ -17,12 +17,7 @@ class Service(do_work_pb2_grpc.SimulateServiceServicer):
         if request.body == "Tick":
             self.episode.blocked = False
         elif request.body == "addActor":
-
-            workflow_string = """
-class jackWorkflow:
-    is_workflow=True
-    pass
-"""
+            
             eve = TaskQueueActor('eve',self.episode.clock)
             self.episode.cast.add_member(eve)
             wash_workflow = w.WashWorkflow(w.Hands())
