@@ -1,1 +1,4 @@
-print("hello from text file")
+class Test:
+
+    def __init__(self):
+        self.is_workflow = False
