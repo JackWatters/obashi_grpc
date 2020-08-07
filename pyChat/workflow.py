@@ -47,16 +47,4 @@ class WashWorkflow(object):
         self.scrub()
         self.rinse.rinse()
 
-
-class Direction(object):
-
-    def __init__(self):
-        self.hands = Hands()
-
-    def apply(self, cast):
-        self.listener = w.WaitForTickWorkflow()
-        wash_workflow = WashWorkflow(self.hands)
-        list(cast)[0].allocate_task(self.listener.the_main_entry_point)
-        list(cast)[1].allocate_task(wash_workflow.wash)
-
         
