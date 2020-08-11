@@ -1,11 +1,11 @@
-from theatre_ag import default_cost
+#from theatre_ag import default_cost
 
 class Test:
 
     def __init__(self):
         self.is_workflow = False
 
-    @default_cost(1)
+    #@default_cost(1)
     def the_main_entry_point(self):
         print("hello from a text file!")
 
