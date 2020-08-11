@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import do_work_pb2 as do__work__pb2
+import pyChat.do_work_pb2 as do__work__pb2
 
 
 class SimulateServiceStub(object):

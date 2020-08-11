@@ -1,11 +1,11 @@
 import grpc 
-import do_work_pb2
 import do_work_pb2_grpc
 import do_work 
 from concurrent import futures
 from theatre_ag import Cast, Episode, SynchronizingClock, TaskQueueActor, default_cost
 from wait_for_tick_workflow import WaitForTickWorkflow
 from improv import Improv
+
 
 def setup_improv():
     clock = SynchronizingClock(max_ticks=10)
