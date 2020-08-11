@@ -7,13 +7,14 @@ class ExecuteCode:
     def __init__(self):
         pass
 
-    #@default_cost(1)
-    def read_file(self):
-        with open('example-workflow.txt') as workflow_code:
-            exec(workflow_code.read())
-        test = Test()
-        print(test.is_workflow)
+    def execute(self,code):
+        to_return = list()
+        name = None
+        old_locals = list(locals().keys())
+        exec(code)
+        for name in locals().keys():
+            if name not in old_locals and name != 'old_locals':
+                to_return.append(eval(name))
+        return to_return
 
-if __name__ == '__main__':
-    e = ExecuteCode()
-    e.read_file()
+

@@ -14,7 +14,7 @@ class Service(do_work_pb2_grpc.SimulateServiceServicer):
         self.episode = episode
 
 
-    def assign_workflow(self, entry_method):
+    def assign_new_actor(self, entry_method):
             eve = TaskQueueActor('eve',self.episode.clock)
             self.episode.cast.add_member(eve)
             eve.allocate_task(entry_method)
@@ -26,8 +26,11 @@ class Service(do_work_pb2_grpc.SimulateServiceServicer):
         if request.body == "Tick":
             self.episode.blocked = False
         elif request.body == "addActor":
-            wash_workflow = w.WashWorkflow(w.Hands())
-            self.assign_workflow(wash_workflow.wash)
+            execute_workflow = e.ExecuteCode()
+            with open('example-workflow.txt','r') as file:
+                code = file.read()
+            dynamic_class_instance = execute_workflow.execute(code)[0]()
+            self.assign_new_actor(dynamic_class_instance.the_main_entry_point)
 
         return do_work_pb2.Message(body="hello from the server")
 
