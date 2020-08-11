@@ -7,21 +7,18 @@ from wait_for_tick_workflow import WaitForTickWorkflow
 from improv import Improv
 
 
-def setup_improv():
-    clock = SynchronizingClock(max_ticks=10)
+clock = SynchronizingClock(max_ticks=10)
 
-    cast = Cast()
-    tick_listener = TaskQueueActor('tick_listener',clock)
-    cast.add_member(tick_listener)
+cast = Cast()
+tick_listening_actor = TaskQueueActor('tick_listener',clock)
+cast.add_member(tick_listening_actor)
 
-    improv = Improv(clock, cast)
-    wait_for_tick_workflow = WaitForTickWorkflow(improv)
-    tick_listener.allocate_task(wait_for_tick_workflow.the_main_entry_point)
-    improv.perform()
+improv = Improv(clock, cast)
+wait_for_tick_workflow = WaitForTickWorkflow(improv)
+tick_listening_actor.allocate_task(wait_for_tick_workflow.the_main_entry_point)
+improv.perform()
 
-    return improv
 
-improv = setup_improv()
 service = do_work.Service(improv)
 grpc_server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 do_work_pb2_grpc.add_SimulateServiceServicer_to_server(service, grpc_server)

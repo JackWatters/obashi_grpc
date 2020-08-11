@@ -1,10 +1,7 @@
-"""
-@author twsswt
-"""
-
-class Improv(object):
+class Improv:
     """
-    An aggregation of the artifacts necessary (clock, cast and directions) to perform a simulation.
+    An aggregation of the artifacts necessary (clock, cast and directions) to perform a simulation with no definite end
+    time.
     """
 
     def __init__(self, clock, cast):
@@ -15,4 +12,3 @@ class Improv(object):
     def perform(self):
         self.clock.start()
         self.cast.start()
-        
