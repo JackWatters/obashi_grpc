@@ -1,4 +1,4 @@
-## gRPC example 
+## obashi gRPC theatre simulation 
 
 A client/server gRPC communication application which allows the simulation of workflows on the server using theatre_ag. The server sets up and begins the simulation. The client controls the simulation.
 
@@ -34,8 +34,8 @@ In the experimental directory: <br/>
 
 ## Instructions
 
-To run this properly, first start up the server by typing in "python server.py" into a terminal in the appropriate directory. This will set up the initial simulation with a simple tick_listener workflow actor that moderates the simulation based on client messages. <br/>
-Improv.perform begins the simulation clock, and tick_listener then acts as a blocking/control mechanism which will release the clock for one tick once a blocked variable is set to False. 
-To run the client, open a second terminal and type "go run client.go" in the appropriate directory. This will call the do_work method using a gRPC connection which allows messages to be sent from client to server. If "Tick" is sent, the blocking variable is set to False. If add_actor is read, a new actor will be assigned the workflow found in example-workflow.txt after compilation. <br/>
+To run this properly, first start up the server by typing in "python server.py" into a terminal in the appropriate directory. This will set up the initial simulation with a simple tick_listener workflow actor that moderates the simulation based on client messages. <br/> <br/>
+Improv.perform begins the simulation clock, and tick_listener then acts as a blocking/control mechanism which will release the clock for one tick once a blocked variable is set to False. <br/><br/>
+To run the client, open a second terminal and type "go run client.go" in the appropriate directory. This will call the do_work method using a gRPC connection which allows messages to be sent from client to server. If "Tick" is sent, the blocking variable is set to False. If add_actor is read, a new actor will be assigned the workflow found in example-workflow.txt after compilation. <br/> <br/>
 Once this is run, the client terminal should receive a status message from the server. In the server terminal, a status will be printed after each message has been sent from the client detailing how far along the workflow an actor is. <br/> <br/>
 Note: The server file must be shut down, or else it will continue to run. Do this by performing cmd-c in the terminal which it is open in.
