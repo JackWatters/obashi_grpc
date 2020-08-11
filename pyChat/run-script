@@ -1,9 +1,0 @@
-#!/bin/bash
-
-source .venv/bin/activate
-cd ~/PycharmProjects/theatre_ag && python setup.py install
-cd ~/go/src/obashi_grpc/pyChat
-osascript -e 'tell app "Terminal"
-    do script "cd ~/go/src/obashi_grpc/goChat && go run client.go"
-end tell'
-python server.py
